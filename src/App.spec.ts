@@ -20,9 +20,7 @@ describe('App', () => {
             mutations: mutations
         })
         const wrapper = mount(App, {
-            global: {
-                plugins: [mock]
-            }
+            global: {plugins: [mock]}
         })
         wrapper.find('button').trigger('click')
         expect(mutations.addBlock).toHaveBeenCalled()
