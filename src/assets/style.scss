@@ -2,3 +2,9 @@ $color-primary: blue;
 $color-secondary: green;
 
 $size-base: 5px;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
