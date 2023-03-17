@@ -1,10 +1,30 @@
-import {it, describe, expect} from 'vitest'
+import { it, describe, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { createStore } from 'vuex'
+import { store } from './store/index'
 import App from './App.vue'
 
 describe('App', () => {
-    it('renders properly', () => {
-        const wrapper = mount(App, {})
-        expect(wrapper.html()).toContain('<div>')
+    it('it renders the AddBlocks button', () => {
+        const wrapper = mount(App, {global: {plugins: [store]}})
+        expect(wrapper.text()).toContain('Add Block')
+    }),
+    it('AddBlocks button triggers the addBlock function in the store', () => {
+        const mutations = {
+            addBlock: vi.fn()
+        }
+        const mock = createStore({
+            getters: {
+                getBlocks() {return [1]}
+            },
+            mutations: mutations
+        })
+        const wrapper = mount(App, {
+            global: {
+                plugins: [mock]
+            }
+        })
+        wrapper.find('button').trigger('click')
+        expect(mutations.addBlock).toHaveBeenCalled()
     })
 })
