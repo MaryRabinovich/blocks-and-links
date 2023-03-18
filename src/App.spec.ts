@@ -13,11 +13,12 @@ describe('App', () => {
         const mutations = {
             addBlock: vi.fn()
         }
+        const blocks = {
+            namespaced: true,
+            mutations
+        }
         const mock = createStore({
-            getters: {
-                getBlocks() {return [1]}
-            },
-            mutations: mutations
+            modules: {blocks}
         })
         const wrapper = mount(App, {
             global: {plugins: [mock]}

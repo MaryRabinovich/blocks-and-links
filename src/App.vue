@@ -8,11 +8,10 @@ const store = useStore()
 
 <template>
   <div>
-    <button @click="() => store.commit('addBlock')">Add Block</button>
-
+    <button @click="() => store.commit('blocks/addBlock')">Add Block</button>
 
     <BlockComponent 
-      v-for="i of store.getters.getBlocks" :key="i" 
+      v-for="i of store.getters['blocks/getBlocks']" :key="i" 
       :block="i" 
     />
   </div>

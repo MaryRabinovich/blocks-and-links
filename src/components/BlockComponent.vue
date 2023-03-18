@@ -7,7 +7,7 @@
     }>()
 
     function onBlockElementClicked(i: number) {
-        store.commit('link', {blockID: props.block, blockElementID: i})
+        store.commit('links/link', {blockID: props.block, blockElementID: i})
     }
 </script>
 

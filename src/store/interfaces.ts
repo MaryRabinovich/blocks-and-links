@@ -1,7 +1,6 @@
 import type { BlockElement, Link } from './types'
 
-export interface State {
-    blocks: number[]
+export interface LinkState {
     waitingBlockElement: BlockElement | null
     links: Link[]
 }

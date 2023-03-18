@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createStore } from 'vuex'
-import BlockComponent from '../BlockComponent.vue'
+import BlockComponent from './BlockComponent.vue'
 
 describe('BlockComponent', () => {
     it('renders properly', () => {
@@ -12,8 +12,12 @@ describe('BlockComponent', () => {
         const mutations = {
             link: vi.fn()
         }
+        const links = {
+            namespaced: true,
+            mutations
+        }
         const mock = createStore({
-            mutations: mutations
+            modules: {links}
         })
         const wrapper = mount(BlockComponent, {
             props: {block: 1}, 
