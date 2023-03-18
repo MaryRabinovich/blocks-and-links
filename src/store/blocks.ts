@@ -1,4 +1,4 @@
-import { BLOCK_START_X, BLOCK_START_Y } from './config'
+import { BLOCK_START_X, BLOCK_START_Y } from '../config'
 import type { Block } from './types'
 import type { BlocksState } from './interfaces'
 

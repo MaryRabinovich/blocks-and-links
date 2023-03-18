@@ -1,6 +1,6 @@
 import type { BlockElement, Link } from './types'
 import type { LinksState } from './interfaces'
-import { consoleSuccess, formatBlockElement } from './console-logging'
+import { consoleSuccess, formatBlockElement } from './helpers'
 
 export const links = {
     namespaced: true,
