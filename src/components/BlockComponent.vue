@@ -9,14 +9,27 @@
     function onBlockElementClicked(i: number) {
         store.commit('links/link', {blockID: props.blockID, blockElementID: i})
     }
+
+    function onBlockDragged(event: Event) {
+        store.commit('blocks/setPosition', {
+            blockID: props.blockID,
+            event: event
+        })
+    }
 </script>
 
 
 <template>
-    <div class="block">
-        <div class="block__element" 
+    <div class="block"
+        @drag="onBlockDragged"
+        :style="{
+            top: store.getters['blocks/getBlocks'][props.blockID].y + 'px',
+            left: store.getters['blocks/getBlocks'][props.blockID].x + 'px'
+        }"
+        ><div class="block__element" 
             v-for="i of [0,1,2,3]" :key="i"
             @click="() => onBlockElementClicked(i)"
+            
         ></div>
     </div>
 </template>
@@ -26,13 +39,16 @@
     @import '../assets/style.scss';
 
     .block {
-        // отладочные поля
-        margin: 30px;
-
         width: 19 * $size-base;
         height: 19 * $size-base;
+        transform: translate(-10 * $size-base, -10 * $size-base);
         background: $color-primary;
-        // position: absolute;
+        position: absolute;
+
+        &:hover {
+            cursor: pointer;
+            background: darken($color-primary, 5%);
+        }
 
         &__element{
             width: 5 * $size-base;
