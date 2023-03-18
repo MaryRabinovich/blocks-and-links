@@ -3,11 +3,11 @@
     const store = useStore()
 
     const props = defineProps<{
-        block: number
+        blockID: number
     }>()
 
     function onBlockElementClicked(i: number) {
-        store.commit('links/link', {blockID: props.block, blockElementID: i})
+        store.commit('links/link', {blockID: props.blockID, blockElementID: i})
     }
 </script>
 

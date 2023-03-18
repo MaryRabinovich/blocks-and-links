@@ -1,17 +1,22 @@
 import type { BlockElement, Link } from './types'
-import type { LinkState } from './interfaces'
+import type { LinksState } from './interfaces'
 import { consoleSuccess, formatBlockElement } from './console-logging'
 
 export const links = {
     namespaced: true,
-    state: (): LinkState => {
+    state: (): LinksState => {
         return {
             waitingBlockElement: null,
             links: []
         }
     },
+    getters: {
+        getLinks: (state: LinksState) => {
+            return state.links
+        }
+    },
     mutations: {
-        link(state: LinkState, newBlockElement: BlockElement) {
+        link(state: LinksState, newBlockElement: BlockElement) {
             if (state.waitingBlockElement === null) {
                 state.waitingBlockElement = newBlockElement
                 consoleSuccess(formatBlockElement(newBlockElement) + ' (chosen)')

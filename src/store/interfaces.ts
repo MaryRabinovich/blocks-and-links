@@ -1,6 +1,10 @@
-import type { BlockElement, Link } from './types'
+import type { Block, BlockElement, Link } from './types'
 
-export interface LinkState {
+export interface BlocksState {
+    blocks: Block[]
+}
+
+export interface LinksState {
     waitingBlockElement: BlockElement | null
     links: Link[]
 }
