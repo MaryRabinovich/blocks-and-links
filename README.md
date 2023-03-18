@@ -1,27 +1,45 @@
-# 2023.03.17
+# Задача
 
-This template should help get you started developing with Vue 3 in Vite.
+### Блоки и узлы
 
-## Recommended IDE Setup
+Блоки представляют собой квадраты с четырьмя кружочками ('узлами') в серединах сторон.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Блоки можно передвигать передвигать по экрану, зажав мышкой.
 
-## Type Support for `.vue` Imports in TS
+Бблоки можно добавлять на экран кликом по кнопке 'Add Block'. 
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Добавляются блоки в одно и то же место экрана, рядом с кнопкой 'Add Block'. 
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+В частности, если подряд добавить два блока, они оказываются один над другим. В таком случае после перетаскивания последнего блока становится виден предпоследний.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### Узлы и линии
 
-## Customize configuration
+Узлы разных блоков можно соединять линиями. 
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Для соединения узлов надо по ним последовательно кликнуть. 
 
-## Project Setup
+Узлы, принадлежащие одному блоку, соединить нельзя. 
+
+При кликах по узлам отчёт о деятельности программы выводится в консоль.
+
+# Комментарии
+
+Размеры картинок можно изменить в файлах src/config.ts и src/assets._variables.scss, в одинаковой пропорции увеличив или уменьшив константы BLOCK_HALF_SIZE и $size-base соответственно.
+
+В проект относительно просто добавить удаление связей. Например, при последовательном клике по уже соединённым узлам.
+
+Какой юзерский сценарий мог бы приводить к удалению блока, не очевидно - клик по блоку может означать всего лишь начало перетаскивания.
+
+Линии для соединения узлов выполнены как SVG элементы PATH. Их координаты формируются внутри функции. Соответственно, форму линии можно сделать изящнее (в проекте реализован простейший вариант с прямыми).
+
+# Стек
+
+Vue 3, Vuex, TypeScript, SVG
+
+
+______________________________________________________
+
+# Project Setup
 
 ```sh
 npm install

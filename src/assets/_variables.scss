@@ -1,0 +1,10 @@
+$color-primary: steelblue;
+$color-secondary: olivedrab;
+$color-tertiary: red;
+
+/** 
+* Если вы изменяете параметр $size-base,
+* в той же пропорции измените константу BLOCK_HALF_SIZE
+* в файле src/config.ts
+*/
+$size-base: 5px;
