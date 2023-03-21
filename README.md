@@ -36,6 +36,11 @@
 
 Vue 3, Vuex, TypeScript, SVG
 
+# Проект на git pages
+
+https://maryrabinovich.github.io/blocks-and-links--dist/
+
+
 
 ______________________________________________________
 
