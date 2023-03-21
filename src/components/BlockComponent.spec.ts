@@ -4,25 +4,24 @@ import { createStore } from 'vuex'
 import BlockComponent from './BlockComponent.vue'
 
 describe('BlockComponent', () => {
+
+    const props = {blockID: 0}
+
+    const getters = {getBlocks: vi.fn()}
+    const blocks = {getters, namespaced: true}
+    getters.getBlocks.mockReturnValue([{x: 0, y: 0}])
+
     it('renders properly', () => {
-        const wrapper = mount(BlockComponent, {props: {block: 1}})
+        const mock = createStore({modules: {blocks}})
+        const wrapper = mount(BlockComponent, {props, global: {plugins: [mock]}})
         expect(wrapper.classes()).toContain('block')
-    }),
+    })
+    
     it('calls for store link function when block-elements are clicked', () => {
-        const mutations = {
-            link: vi.fn()
-        }
-        const links = {
-            namespaced: true,
-            mutations
-        }
-        const mock = createStore({
-            modules: {links}
-        })
-        const wrapper = mount(BlockComponent, {
-            props: {block: 1}, 
-            global: {plugins: [mock]}
-        })
+        const mutations = {link: vi.fn()}
+        const links = {mutations, namespaced: true}
+        const mock = createStore({modules: {blocks, links}})
+        const wrapper = mount(BlockComponent, {props, global: {plugins: [mock]}})
         const blockElement = wrapper.find('.block__element')
         blockElement.trigger('click')
         expect(mutations.link).toHaveBeenCalled()
