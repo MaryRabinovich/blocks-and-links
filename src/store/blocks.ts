@@ -12,6 +12,11 @@ export const blocks = {
     getters: {
         getBlocks (state: BlocksState) {
             return state.blocks
+        },
+        getBlockByID(state: BlocksState) {
+            return (blockID: number) => {
+                return state.blocks.find(block => block.id === blockID)
+            }
         }
     },
     mutations: {

@@ -6,6 +6,8 @@
         blockID: number
     }>()
 
+    const getBlockByID = store.getters['blocks/getBlockByID']
+
     function onBlockElementClicked(i: number) {
         store.commit('links/link', {blockID: props.blockID, blockElementID: i})
     }
@@ -23,8 +25,8 @@
     <div class="block"
         @drag="onBlockDragged"
         :style="{
-            top: store.getters['blocks/getBlocks'][props.blockID].y + 'px',
-            left: store.getters['blocks/getBlocks'][props.blockID].x + 'px'
+            top: getBlockByID(props.blockID).y + 'px',
+            left: getBlockByID(props.blockID).x + 'px'
         }"
         ><div class="block__element" 
             v-for="i of [0,1,2,3]" :key="i"
