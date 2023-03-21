@@ -31,12 +31,17 @@ export const blocks = {
             blockID: number
             event: Event
         }) {
-            if (payload.event.pageX > 0) {
-                state.blocks[payload.blockID].x = payload.event.pageX
-            }
-            if (payload.event.pageY > 0) {
-                state.blocks[payload.blockID].y = payload.event.pageY
-            }
+            const x: number = payload.event.pageX ?? 0
+            const y: number = payload.event.pageY ?? 0
+
+            const block: Block | undefined = state.blocks.find(
+                block => block.id === payload.blockID
+            )
+
+            if (!block) return
+
+            if (x > 0) block.x = x
+            if (y > 0) block.y = y
         }
     }
 }
