@@ -21,8 +21,17 @@ export const blocks = {
     },
     mutations: {
         addBlock (state: BlocksState) {
+            let nextID = 0
+            
+            if (state.blocks.length > 0) {
+                const maxBlock = state.blocks.reduce(
+                    (prev, next) => prev.id > next.id ? prev : next
+                )
+                nextID = maxBlock.id + 1
+            }
+
             state.blocks.push({
-                id: state.blocks.length,
+                id: nextID,
                 x: BLOCK_START_X,
                 y: BLOCK_START_Y
             })
